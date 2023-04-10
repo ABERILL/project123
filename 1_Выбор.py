@@ -16,9 +16,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 
-d = st.sidebar.date_input(
-    "Дата",
-    datetime.date(2018, 1, 9))
+d = st.sidebar.date_input("Дата")
 
 def date(d):
 
@@ -54,7 +52,6 @@ st.session_state.df = df
 # st.line_chart(chart_data)
 
 if st.sidebar.button("Поиск"):
-    print(d, type(d), str(d))
 
     if add_selectbox_1 ==  "Европейская часть РФ" and add_selectbox_3 == "Летнее" :
         data_Europlet = df[(df['index_place'] == 'EVR') & (df['index_product'] == 'DTL') & (df['index_date'] == str(d))] 
@@ -116,6 +113,6 @@ if st.sidebar.button("Поиск"):
     if add_selectbox_1 ==  "Все регионы" :
         chart_data = pd.DataFrame(df)[['index_date', 'index_value']].reset_index().drop(columns = ['index'])[df['index_date'] == str(d)].set_index('index_date')
         st.write(df[df['index_date'] == str(d)])
-        st.bar_chart(df[df['index_date'] == str('2018-01-10')].set_index('index_product')['index_value'])
+        st.bar_chart(df[df['index_date'] == str(d)].set_index('index_product')['index_value'])
 
 
