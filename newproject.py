@@ -1,0 +1,109 @@
+import streamlit as st
+from streamlit import *
+import pandas as pd
+import numpy as np
+import datetime
+import altair as alt
+
+d = st.sidebar.date_input(
+    "Дата",
+    datetime.date(2018, 1, 9))
+
+def date(d):
+
+    return date
+
+add_selectbox_1 = st.sidebar.selectbox(
+    "Регион",
+    ("Все регионы", "Европейская часть РФ", "Урал и Сибирь", "Сибирь и Дальний Восток"))
+
+add_selectbox_2 = st.sidebar.selectbox(
+    "Топливо",
+    ("ДТ", ""))
+
+add_selectbox_3 = st.sidebar.selectbox(
+    "Вид топлива",
+    ("Летнее", "Межсезонное", "Зимнее"))
+
+# vibor = st.radio(
+#     "Какой тип графика предпочитаете?",
+#     ('Линейный', 'Гистограмма'))
+
+
+df = pd.read_csv('data2.csv')
+# st.write(df)
+
+# chart_data = pd.DataFrame(df)[['index_product', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_product')
+
+
+# c = alt.Chart(chart_data).mark_circle().encode(
+#     x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
+
+# st.line_chart(chart_data)
+
+if st.sidebar.button("Поиск"):
+    print(d, type(d), str(d))
+
+    if add_selectbox_1 ==  "Европейская часть РФ" and add_selectbox_3 == "Летнее" :
+        data_Europlet = df[(df['index_place'] == 'EVR') & (df['index_product'] == 'DTL') & (df['index_date'] == str(d))] 
+        chart_data = pd.DataFrame(data_Europlet)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europlet)
+        st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Европейская часть РФ" and add_selectbox_3 == "Межсезонное" :
+        data_Europmiddle = df[(df['index_place'] == 'EVR') & (df['index_product'] == 'DTM') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europmiddle)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europmiddle)
+        st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Европейская часть РФ" and add_selectbox_3 == "Зимнее" :
+        data_Europzim = df[(df['index_place'] == 'EVR') & (df['index_product'] == 'DTZ') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europzim)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europzim)
+        st.line_chart(chart_data)
+
+
+    if add_selectbox_1 ==  "Сибирь и Дальний Восток" and add_selectbox_3 == "Летнее" :
+        data_Europlet = df[(df['index_place'] == 'DAL') & (df['index_product'] == 'DTL') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europlet)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europlet)
+        st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Сибирь и Дальний Восток" and add_selectbox_3 == "Межсезонное" :
+        data_Europmiddle = df[(df['index_place'] == 'DAL') & (df['index_product'] == 'DTM') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europmiddle)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europmiddle)
+        st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Сибирь и Дальний Восток" and add_selectbox_3 == "Зимнее" :
+        data_Europzim = df[(df['index_place'] == 'DAL') & (df['index_product'] == 'DTZ') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europzim)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europzim)
+        st.line_chart(chart_data)
+
+
+    if add_selectbox_1 ==  "Урал и Сибирь" and add_selectbox_3 == "Летнее" :
+        data_Europlet = df[(df['index_place'] == 'SIB') & (df['index_product'] == 'DTL') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europlet)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europlet)
+        st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Урал и Сибирь" and add_selectbox_3 == "Межсезонное" :
+        data_Europmiddle = df[(df['index_place'] == 'SIB') & (df['index_product'] == 'DTM') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europmiddle)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europmiddle)
+        st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Урал и Сибирь" and add_selectbox_3 == "Зимнее" :
+        data_Europzim = df[(df['index_place'] == 'SIB') & (df['index_product'] == 'DTZ') & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europzim)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europzim)
+        st.line_chart(chart_data)
+
+    # if add_selectbox_1 ==  "Сибирь и Дальний Восток" :
+    #    data_DAL = df[df['index_place'] == 'DAL']
+    #    chart_data = pd.DataFrame(data_DAL)[['index_product', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_product')
+    #    st.write(data_DAL)
+    #    st.line_chart(chart_data)
+
+
+    if add_selectbox_1 ==  "Все регионы" :
+        chart_data = pd.DataFrame(df)[['index_date', 'index_value']].reset_index().drop(columns = ['index'])[df['index_date'] == str('2018-01-10')]
+        st.write(df)
+        st.line_chart(chart_data)
+
+
