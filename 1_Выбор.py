@@ -5,6 +5,17 @@ import numpy as np
 import datetime
 import altair as alt
 
+
+hide_streamlit_style = """
+            <style>
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
+
+
 d = st.sidebar.date_input(
     "Дата",
     datetime.date(2018, 1, 9))
@@ -31,6 +42,7 @@ add_selectbox_3 = st.sidebar.selectbox(
 
 
 df = pd.read_csv('data2.csv')
+st.session_state.df = df
 # st.write(df)
 
 # chart_data = pd.DataFrame(df)[['index_product', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_product')
@@ -102,8 +114,8 @@ if st.sidebar.button("Поиск"):
 
 
     if add_selectbox_1 ==  "Все регионы" :
-        chart_data = pd.DataFrame(df)[['index_date', 'index_value']].reset_index().drop(columns = ['index'])[df['index_date'] == str('2018-01-10')]
-        st.write(df)
-        st.line_chart(chart_data)
+        chart_data = pd.DataFrame(df)[['index_date', 'index_value']].reset_index().drop(columns = ['index'])[df['index_date'] == str(d)].set_index('index_date')
+        st.write(df[df['index_date'] == str(d)])
+        st.bar_chart(df[df['index_date'] == str('2018-01-10')].set_index('index_product')['index_value'])
 
 
