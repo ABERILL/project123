@@ -1,9 +1,8 @@
 import streamlit as st
 from streamlit import *
 import pandas as pd
-import numpy as np
-import datetime
-import altair as alt
+
+
 
 
 hide_streamlit_style = """
@@ -39,7 +38,7 @@ add_selectbox_3 = st.sidebar.selectbox(
 #     ('Линейный', 'Гистограмма'))
 
 
-df = pd.read_csv('data2.csv')
+df = pd.read_csv('C:/rabota/project123/data5.csv')
 st.session_state.df = df
 # st.write(df)
 
@@ -68,6 +67,11 @@ if st.sidebar.button("Поиск"):
         chart_data = pd.DataFrame(data_Europzim)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
         st.write(data_Europzim)
         st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Европейская часть РФ" and add_selectbox_3 == "Все виды топливы" :
+        data_Europmiddle = df[(df['index_place'] == 'EVR') & (df['index_product']) & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europmiddle)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europmiddle)
+        st.line_chart(chart_data)
 
 
     if add_selectbox_1 ==  "Сибирь и Дальний Восток" and add_selectbox_3 == "Летнее" :
@@ -85,6 +89,11 @@ if st.sidebar.button("Поиск"):
         chart_data = pd.DataFrame(data_Europzim)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
         st.write(data_Europzim)
         st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Европейская часть РФ" and add_selectbox_3 == "Все виды топлива" :
+        data_Europmiddle = df[(df['index_place'] == 'EVR') & (df['index_product']) & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europmiddle)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europmiddle)
+        st.line_chart(chart_data)
 
 
     if add_selectbox_1 ==  "Урал и Сибирь" and add_selectbox_3 == "Летнее" :
@@ -101,6 +110,11 @@ if st.sidebar.button("Поиск"):
         data_Europzim = df[(df['index_place'] == 'SIB') & (df['index_product'] == 'DTZ') & (df['index_date'] == str(d))]
         chart_data = pd.DataFrame(data_Europzim)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
         st.write(data_Europzim)
+        st.line_chart(chart_data)
+    elif add_selectbox_1 ==  "Европейская часть РФ" and add_selectbox_3 == "Все виды топлива" :
+        data_Europmiddle = df[(df['index_place'] == 'EVR') & (df['index_product']) & (df['index_date'] == str(d))]
+        chart_data = pd.DataFrame(data_Europmiddle)[['index_date', 'index_value']].reset_index().drop(columns = ['index']).set_index('index_date')
+        st.write(data_Europmiddle)
         st.line_chart(chart_data)
 
     # if add_selectbox_1 ==  "Сибирь и Дальний Восток" :
