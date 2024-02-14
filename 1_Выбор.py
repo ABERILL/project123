@@ -38,7 +38,7 @@ add_selectbox_3 = st.sidebar.selectbox(
 #     ('Линейный', 'Гистограмма'))
 
 
-df = pd.read_csv('C:/rabota/project123/data5.csv')
+df = pd.read_csv('C:/rabota/project123/data6.csv')
 st.session_state.df = df
 # st.write(df)
 
